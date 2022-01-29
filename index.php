@@ -3,6 +3,11 @@
     $Query = "SELECT * FROM mahasiswa";
     $datas = showData($Query);
   
+    if(isset($_POST["cari"])) {
+        $datas = searchData($_POST["keyword"]);
+        
+      
+    }
    
 ?>
 
@@ -26,6 +31,13 @@
 <main>
     <div id="content">
 
+    <section style="margin-bottom: 10px;">
+            <form action="" method="POST" >
+                <input type="text" name="keyword" placeholder="cari apa nih...?" autocomplete="off" autofocus>
+                <button type="submit" name="cari">Cari</button>
+            </form>
+    </section>
+
     <table>
             <thead>
                 <th>No</th>
@@ -37,6 +49,7 @@
             </thead>
             <tbody>
         <?php $i=1; ?>
+   
         <?php foreach($datas as $data): ?>
                 <tr>
                         <td>
@@ -73,6 +86,9 @@
                 </tr>
 <?php $i++;?>
 <?php endforeach ?>
+
+
+
             </tbody>
     </table>
 
