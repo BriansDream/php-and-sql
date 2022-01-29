@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300&family=Montserrat:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+body {
+    font-family: 'Bebas Neue', cursive;
+}
+header {
+        background-color:#FFE162;
+        padding:10px;
+        font-size:1.5rem;
+        font-weight:200;
+}
+
+main {
+    margin-top:30px;
+}
+
+section {
+    margin:0 auto;
+    max-width:1440px;
+}
+
+
+input {
+    padding:10px;
+    max-width:1000px;
+    width:100%;
+    border-radius:10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.3rem;
+}
+.btn-add {
+    text-align: center;
+    border-radius:30px;
+    background-color:red;
+    color:white;
+    border:none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    max-width:100px;
+    width:100%;
+    margin: 0 auto;
+    cursor:pointer;
+    font-size:1.5rem;
+}
+form div {
+    margin-top:10px;
+}
