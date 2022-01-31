@@ -4,14 +4,14 @@ require_once('./functions.php');
 if(isset($_POST["submit"])) {
     
    if(insertData($_POST) > 0) {
-       echo "
+       echo"
         <script>
             alert('Data successfully added');
             document.location.href = 'index.php';
         </script>
        ";
    } else {
-       echo "
+       echo"
         <script>
             alert('Failed added data please check your connection or SQL sintaks');
             document.location.href = 'index.php';
@@ -42,8 +42,8 @@ if(isset($_POST["submit"])) {
 
     <main>
         <div id="content">
-
-            <form action="" method="post">
+            <!-- enctype / encoding type, untuk menangani file -->
+            <form action="" method="post" enctype="multipart/form-data">
                 <div>
                     <input type="text" name="name" placeholder="Name of mahasiswa" required>
                 </div>
@@ -52,6 +52,9 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div>
                     <input type="text" name="jurusan" placeholder="Jurusan" required>
+                </div>
+                <div>
+                    <input type="file" name="gambar">
                 </div>
                 <div>
                   <input class="btn-add" type="submit" name="submit" value="send">

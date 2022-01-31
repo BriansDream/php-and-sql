@@ -5,30 +5,27 @@
     $queryShowData = "SELECT * from mahasiswa WHERE id = {$userId}";
     // Langsung me-return array index ke 0
     $students = showData($queryShowData)[0];
-    echo var_dump($students);
+   
 
 
     if(isset($_POST['submit'])) {
            if(updateData($_POST) > 0){
-            echo "
+            echo"
             <script>
-                alert('Data successfully update');
+                alert('Data successfully added');
                 document.location.href = 'index.php';
             </script>
-            ";
-
+           ";
            } else {
-            echo "
+            echo"
             <script>
                 alert('Please check your connection or sql syntax');
                 document.location.href = 'index.php';
             </script>
             ";
            }
-
     }
  
-
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +46,7 @@
             margin-bottom: 20px;
         }
     </style>
+    <link rel="stylesheet" href="./css/update.css">
 </head>
 <body>
 
@@ -60,21 +58,29 @@
     </div>
 </header>
     
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <div>
                 <input hidden type="text" name="id" value="<?php echo $students['id'] ?>" required> 
+            </div>
+            <div>
+                <input hidden type="text" name="oldImage" value="<?php echo $students['gambar'] ?>" required> 
             </div>
       
             <div>
                 <input type="text" name="nama" value="<?php echo $students['nama'] ?>" required> 
             </div>
             <div>
-                <input type="text" name="nrp" value="<?php echo $students['nrp'] ?>"> 
+                <input type="text" name="nrp" value="<?php echo $students['nrp'] ?>" required> 
             </div>
             <div>
-                <input type="text" name="jurusan" value="<?php echo $students['jurusan'] ?>"> 
+                <input type="text" name="jurusan" value="<?php echo $students['jurusan'] ?>" required> 
             </div>
 
+            <div>
+                <img src="./img/<?php echo $students['gambar'] ?>">
+
+                <input type="file" name="gambar"> 
+            </div>
             <div>
                 <button type="submit" name="submit">update data</button>
             </div>

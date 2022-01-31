@@ -69,7 +69,7 @@
                         </td>
                
                         <td>
-        <?php echo $data["gambar"] ?>
+       <img src="./img/<?php echo $data["gambar"] ?>" alt=""> 
                         </td>
                         <td>
                     <a href="./tambah.php">
