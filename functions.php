@@ -170,7 +170,7 @@
 
         if($password !== $cPassword) {
             echo "
-            '<script>   
+            <script>   
             alert('Check again your password and confirm password !!! ');
         
             </script>
@@ -189,4 +189,35 @@
         mysqli_query($conn,$insertToDatabase);
         return mysqli_affected_rows($conn);
     }
+
+
+    function login($dataUser) {
+        global $conn;
+        
+        $username = $dataUser["username"];
+        $password = $dataUser["password"];
+
+        $queryUsername = "SELECT * FROM users
+        WHERE username = '$username'";
+        $result = mysqli_query($conn,$queryUsername);
+
+        // return baris berdasarkan query ke database
+        // Jika ketemu akan return 1, jika tidak ada = 0
+        if(mysqli_num_rows($result) === 1) {
+
+            // Cek password
+            $row = mysqli_fetch_assoc($result);
+
+            // password verify kebalikan dari password hash
+            // cek sebuah string apakah sama dengan hash'nya
+           if(password_verify($password, $row["password"])) { 
+            header("Location: index.php");
+            exit;
+           }
+        }
+       
+    }
+      
+
+    
 ?>
