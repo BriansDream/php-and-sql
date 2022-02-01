@@ -142,4 +142,51 @@
         return $newImageFileName;
 
     }
+
+
+    function signup($userRegist){
+        global $conn;
+        // stripslashes = membersihkan backslash 
+        // strtolower = membuat all of character lowercase
+        $userName =  strtolower(stripslashes($userRegist["username"]));
+        // realescapestring memungkinkan user memasukkan password ada tanda kutip dan akan dimasukkan kedalam databases
+        $password = mysqli_real_escape_string($conn,$userRegist["password"]);
+        $cPassword = mysqli_real_escape_string($conn,$userRegist["cPassword"]);
+        
+
+          // Jika ingin mengambil data dari database harus menggunakan built in function
+          $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$userName'");
+            $checkUsername = mysqli_fetch_assoc($result);
+       
+          if($checkUsername) {
+              echo "
+              <script>
+              alert('Username tidak boleh sama');
+              </script>
+              ";
+              return false;
+          }
+
+
+        if($password !== $cPassword) {
+            echo "
+            '<script>   
+            alert('Check again your password and confirm password !!! ');
+        
+            </script>
+            ";
+            return false;
+        }
+
+        // encrypt password
+        $password = password_hash($password,PASSWORD_DEFAULT);
+        
+      
+      
+
+        $insertToDatabase = "INSERT INTO users values (
+            '','$userName','$password')";
+        mysqli_query($conn,$insertToDatabase);
+        return mysqli_affected_rows($conn);
+    }
 ?>
