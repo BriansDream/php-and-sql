@@ -1,5 +1,10 @@
 <?php 
     require_once('./functions.php');
+    session_start();
+    if(!$_SESSION["login"]) {
+        header("Location: login.php");
+        exit;
+    }
     $conn = mysqli_connect('localhost','root','','phpdasar');
     $userId = $_GET["name"];
     $queryShowData = "SELECT * from mahasiswa WHERE id = {$userId}";

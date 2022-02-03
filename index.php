@@ -1,5 +1,10 @@
 <?php
     require_once('./functions.php');
+    session_start();
+    if(!$_SESSION["login"]) {
+        header("Location: login.php");
+        exit;
+    }
     $Query = "SELECT * FROM mahasiswa";
     $datas = showData($Query);
   
@@ -31,11 +36,18 @@
 <main>
     <div id="content">
 
-    <section style="margin-bottom: 10px;">
+    <section style="margin-bottom: 10px; display:flex; justify-content:space-between;">
             <form action="" method="POST" >
                 <input type="text" name="keyword" placeholder="cari apa nih...?" autocomplete="off" autofocus>
                 <button type="submit" name="cari">Cari</button>
             </form>
+
+            <a href="./logout.php?name=<?php echo $_SESSION["login"]?> style="text-decoration: none;">
+         <div>
+             <p style="color:red;">Logout dulu gaes...</p>
+         </div>
+            </a>
+
     </section>
 
     <table>

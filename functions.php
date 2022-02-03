@@ -211,6 +211,8 @@
             // password verify kebalikan dari password hash
             // cek sebuah string apakah sama dengan hash'nya
            if(password_verify($password, $row["password"])) { 
+            // Set session   
+            $_SESSION["login"] = true;
             header("Location: index.php");
             exit;
            }

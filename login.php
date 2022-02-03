@@ -1,5 +1,11 @@
 <?php 
+session_start();
     require_once('./functions.php');
+    if($_SESSION["login"]) {
+        header("Location: index.php");
+        exit;
+    }
+    
     if(isset($_POST['login'])) {
         if(!login($_POST)) {
             echo"
@@ -9,6 +15,8 @@
             ";
        
         }
+
+       
     
     }
 ?>

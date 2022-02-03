@@ -1,6 +1,10 @@
 <?php
 require_once('./functions.php');
-
+session_start();
+if(!$_SESSION["login"]) {
+    header("Location: login.php");
+    exit;
+}
 if(isset($_POST["submit"])) {
     
    if(insertData($_POST) > 0) {
